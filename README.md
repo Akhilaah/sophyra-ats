@@ -1,16 +1,63 @@
-# Sophyra ATS (local)
+# Sophyra ATS (Local)
 
-Small project that generates ATS-friendly resumes and scores them against a job description.
+An AI-powered system that generates ATS-friendly resumes and evaluates them against job descriptions with an ATS compatibility score.
 
-Quick start
+This project is designed to help students and early-career professionals create resumes that align with Applicant Tracking Systems used by recruiters.
 
-1. Create a virtual environment and install dependencies:
+---
 
+## 🚀 Features
+
+- AI-generated, ATS-friendly resume creation
+- Job-description–aware keyword alignment
+- ATS score (0–100) with explanations
+- Resume download in DOCX format
+- Resume upload and ATS scanning (PDF/DOCX)
+- Clean, minimal UI with live preview
+
+---
+
+## 🧠 How the AI works
+
+- Resume generation is powered by **Google Gemini (via Google AI Studio)**
+- The LLM is prompted to:
+  - generate standard ATS-compliant sections
+  - prioritize skills and keywords from the job description
+  - avoid formatting that breaks ATS parsing
+- The output is plain text and later formatted into a DOCX file
+
+---
+
+## 📊 ATS Scoring Logic
+
+The ATS score is computed using lightweight text analysis:
+- Extracts keywords from the job description
+- Compares them with resume content
+- Scores based on keyword match ratio, role relevance, and formatting rules
+- Provides matched keywords, missing keywords, and improvement suggestions
+
+Scoring logic is implemented in `ats_scoring.py`.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Backend**: FastAPI (Python)
+- **LLM**: Google Gemini (AI Studio)
+- **Frontend**: HTML, CSS, Vanilla JavaScript
+- **Document Generation**: python-docx
+- **Scoring**: Custom keyword-based ATS logic
+
+---
+
+## ⚡ Quick Start
+
+### 1. Create a virtual environment and install dependencies
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-```
+
 
 2. Set environment variable `GOOGLE_API_KEY` (used by Gemini client):
 
