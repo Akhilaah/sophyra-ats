@@ -1,0 +1,93 @@
+:root{
+  --bg:#f5f7fb;
+  --card:#ffffff;
+  --accent:#2563eb;      /* deeper blue */
+  --accent-soft:#eaf1ff; /* soft highlight */
+  --muted:#64748b;
+  --success:#16a34a;
+}
+*{box-sizing:border-box}
+
+/* accessibility helper */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; margin:0; background:var(--bg); color:#0f172a}
+.container{max-width:980px; margin:28px auto; padding:0 18px}
+.site-header{background:linear-gradient(90deg,#fff 0%, #f8fafc 100%); border-bottom:1px solid rgba(15,23,42,0.04);}
+.site-header .container{padding:18px 20px}
+.site-header h1{margin:0; font-size:20px}
+.tag{color:var(--muted); font-size:13px; margin-top:6px}
+.card{background:var(--card); border-radius:12px; padding:20px; box-shadow:0 10px 30px rgba(15,23,42,0.06); margin-bottom:18px}
+h2{margin-top:0}
+.two-column{display:grid; grid-template-columns: 460px 1fr; gap:18px}
+.pane-left{min-height:420px}
+.pane-right{min-height:420px}
+.single-column{max-width:920px}
+.center{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center}
+.option-grid{display:flex; gap:18px; justify-content:center; margin-top:12px}
+.large{padding:18px 22px; font-size:16px}
+.grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+label{display:block; margin-bottom:10px; font-size:13px}
+input, textarea{width:100%; padding:12px; border:1px solid #eef2ff; border-radius:10px; background:#fff}
+textarea{min-height:90px}
+.actions{display:flex; align-items:center; gap:12px}
+.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; background:#fff; border:1px solid #e6eef9; color:var(--accent); text-decoration:none; border-radius:10px; cursor:pointer}
+.btn[disabled]{opacity:0.6; cursor:not-allowed}
+.btn.primary{background:var(--accent); color:#fff; border:none}
+.btn.ghost{background:transparent; border:1px solid rgba(15,23,42,0.06); color:var(--muted)}
+.status{font-size:13px; color:var(--muted)}
+.result{margin-top:12px; background:#fff; border-radius:8px; padding:14px; border:1px solid #eef2ff}
+pre{white-space:pre-wrap; background:transparent; margin:0; color:#0f172a}
+.foot-note{color:var(--muted); font-size:13px; text-align:center}
+
+.preview-toolbar{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px}
+.preview-toolbar .meta{color:var(--muted); font-size:13px}
+.preview-box{background:#f8fafc; border-radius:8px; padding:12px; border:1px dashed #e6eef9; max-height:420px; overflow:auto}
+
+/* simple spinner */
+.spinner{display:inline-block; width:14px; height:14px; border-radius:50%; border:2px solid rgba(255,255,255,0.3); border-top-color:rgba(255,255,255,0.9); animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media (max-width:720px){
+  .grid{grid-template-columns:1fr}
+  .two-column{grid-template-columns:1fr}
+}
+
+/* Resume preview styles */
+.resume-header{display:flex; justify-content:space-between; align-items:flex-start; gap:12px}
+.res-name{font-family:Merriweather, serif; font-weight:700; margin:0; font-size:20px}
+.res-contact{color:var(--muted); font-size:13px}
+.resume-body{margin-top:14px}
+.resume-body h3{margin:12px 0 6px; font-size:14px; letter-spacing:0.6px}
+.resume-body ul{margin:6px 0 12px 18px}
+.resume-body p{margin:6px 0}
+.resume-body .skills{display:flex; flex-wrap:wrap; gap:8px}
+.resume-body .skill-pill{background:#eef6ff; color:var(--accent); padding:6px 10px; border-radius:999px; font-size:13px}
+.resume-body .project-title{font-weight:600}
+.skill-pill{
+  background:var(--accent-soft);
+}
+/* Screen transition */
+.card{
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.card[hidden]{
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+}
+
+.card:not([hidden]){
+  opacity:1;
+  transform:translateY(0);
+}
+
+.btn{
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15,23,42,0.08);
+}

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sophyra ATS — Resume Builder & Scanner</title>
+    <link rel="icon" href="/favicon.ico" />
+    <!-- Professional fonts -->
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Sophyra AI — Resume Builder & Scanner</title>
+        <link rel="icon" href="/favicon.ico" />
+        <!-- Professional fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/static/styles.css" />
+      </head>
+      <body>
+        <header class="site-header">
+          <div class="container header-inner">
+            <div class="brand">Sophyra <span class="accent">AI</span></div>
+            <p class="tag">Create ATS-optimized resumes and score existing resumes</p>
+          </div>
+        </header>
+
+        <main class="container single-column main-full">
+          <div id="option-screen" class="card option-screen">
+            <h2 class="sr-only">Choose an action</h2>
+            <div class="option-row">
+              <div class="option-card left">
+                <h3>Generate resume with AI</h3>
+                <p class="muted">Create a tailored, ATS-friendly resume from your details or a job description.</p>
+                <button id="btn-generate" class="btn primary large">Generate</button>
+              </div>
+
+              <div class="option-card right">
+                <h3>Check ATS score</h3>
+                <p class="muted">Upload your resume (PDF/DOCX) to receive an ATS compatibility score and suggestions.</p>
+                <button id="btn-score" class="btn primary large">Check</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Generate screen -->
+          <section id="generate-screen" class="card" hidden>
+            <h2>Generate Resume</h2>
+            <form id="generate-form">
+              <div class="grid">
+                <label>
+                  Name
+                  <input name="name" required />
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email" required />
+                </label>
+                <label>
+                  Phone
+                  <input name="phone" required />
+                </label>
+                <label>
+                  Target Role
+                  <input name="role" required />
+                </label>
+              </div>
+
+              <label>
+                Job Description (optional)
+                <textarea name="jd" rows="4" placeholder="Paste JD to prioritize keywords"></textarea>
+              </label>
+
+              <label>
+                Existing resume / notes (optional)
+                <textarea name="content" rows="6" placeholder="Paste existing experience, projects, etc."></textarea>
+              </label>
+
+              <div class="actions">
+                <button type="submit" class="btn primary">Generate</button>
+                <div id="generate-status" class="status"></div>
+              </div>
+            </form>
+
+            <div id="generate-result" class="result" hidden>
+              <div class="resume-header">
+                <div>
+                  <h1 id="res-name" class="res-name"></h1>
+                  <div id="res-contact" class="res-contact"></div>
+                </div>
+                <div class="res-actions">
+                  <p><strong>ATS score:</strong> <span id="gen-score"></span></p>
+                  <div style="display:flex; gap:8px; align-items:center">
+                    <span id="gen-mode" style="color:var(--muted); font-size:12px"></span>
+                    <a id="download-link" class="btn" href="#" target="_blank" hidden>Download .docx</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="resume-body" id="res-body">
+                <!-- rendered resume HTML will appear here -->
+              </div>
+
+              <details style="margin-top:12px">
+                <summary>ATS explanation</summary>
+                <pre id="gen-explanation"></pre>
+              </details>
+            </div>
+
+            <div style="margin-top:12px">
+              <button id="back-from-generate" class="btn ghost">Back</button>
+            </div>
+          </section>
+
+          <!-- Score screen -->
+          <section id="score-screen" class="card" hidden>
+            <h2>Check ATS Score</h2>
+            <form id="upload-form">
+              <label>
+                Resume (PDF or DOCX)
+                <input id="file-input" name="file" type="file" accept=".pdf,.docx" required />
+              </label>
+
+              <label>
+                Job Description (optional)
+                <textarea name="jd" rows="4" placeholder="Paste JD to prioritize keywords"></textarea>
+              </label>
+
+              <div id="dropzone" class="preview-box" style="margin-top:10px; text-align:center; cursor:pointer">
+                Drop a file here or click to select
+              </div>
+
+              <div class="actions">
+                <button type="submit" class="btn">Upload & Score</button>
+                <div id="upload-status" class="status"></div>
+              </div>
+            </form>
+
+            <div id="upload-result" class="result" hidden>
+              <h3>Upload Result</h3>
+              <p><strong>Filename:</strong> <span id="up-filename"></span></p>
+              <p><strong>ATS score:</strong> <span id="up-score"></span></p>
+              <pre id="up-explanation"></pre>
+            </div>
+
+            <div style="margin-top:12px">
+              <button id="back-from-score" class="btn ghost">Back</button>
+            </div>
+          </section>
+        </main>
+
+        <footer class="foot-note">
+          <p>Open the network console (DevTools) to inspect requests and responses.</p>
+        </footer>
+
+      <script src="/static/app.js"></script>
+      </body>
+    </html>
